@@ -1,0 +1,61 @@
+<!doctype html><html>  <head>    <base href="./" />    <title>JSDoc: Index</title>    <link type="text/css" rel="stylesheet" href="css/jsdoc-default.css" />    <link href="css/prettify-tomorrow.css" type="text/css" rel="stylesheet" />    <script src="js/prettify.js"></script>  </head>  <body>    <nav>      <h2><a href="index.html">Index</a></h2>          <h3>module: docs</h3>        <ul>        </ul>        <ul>            <h3>factory</h3>            <ul>                <li><a href="PermissionService.html">PermissionService</a></li>            </ul>            <h3>provider</h3>            <ul>                <li><a href="PermissionServiceProvider.html">PermissionServiceProvider</a></li>            </ul>        </ul>    </nav>    <h1 class="title">      Index    </h1>    <div id="main">      <section class="section-readme">        <article>          <h1>Angular Perms</h1><p>Angular Perms is an AngularJS service that helps you checking user permission within your angular application. You
+can register permission aliases, that may check for other permission aliases, call permission check functions or 
+permissions coming from your backend. You can also register permission getter functions that check for permissions
+coming from your backend.</p>
+<p><strong>Note:</strong> This library is for AngularJS 1.x only!</p>
+<h2>Dependencies</h2><p>Angular Perms depends on AngularJS 1.x.</p>
+<h2>Installation</h2><ul>
+<li>Via <code>npm</code>: <code>npm install --save angular-perms</code></li>
+<li>Via <code>git</code>: <code>git clone git@github.com:beachmachine/angular-perms.git</code></li>
+</ul>
+<p>Declare dependency on Angular Perms for your main application:</p>
+<pre class="prettyprint source lang-javascript"><code>(function() {
+    var app = angular.module('app', [
+        'ngPerms'
+    ])
+})();</code></pre><h2>Examples</h2><h3>Register permission aliases</h3><p>The following example shows how to register a permission alias that checks for permissions using
+another permission alias and a check function. The second permission alias uses a permission coming
+from the backend. This backend permission is checked via a permission getter function.</p>
+<pre class="prettyprint source lang-javascript"><code>angular.module('app').run(
+    function (PermissionService) {
+        PermissionService
+            .define('ui.permission1', [
+                'ui.permission2',
+                function (obj) {
+                    return obj.is_editable;
+                }
+            ])
+            .define('ui.permission2', [
+                'backend.permission1'
+            ]);
+        PermissionService
+            .registerPermissionGetter(function (name) {
+                // this may come from another service in your code
+                var usersBePerms = [
+                    'backend.permission1',
+                    'backend.permission2'
+                ];
+                return usersBePerms.indexOf(name) !== -1;
+            });
+    });</code></pre><p>This is how to check the permission in your template:</p>
+<pre class="prettyprint source lang-html"><code>&lt;div ng-if=&quot;perms.has('ui.permission1')&quot;>
+    Yay, permission, yay!
+&lt;/div></code></pre><p>You can also check for backend permissions this way:</p>
+<pre class="prettyprint source lang-html"><code>&lt;div ng-if=&quot;perms.has('backend.permission1')&quot;>
+    Yay, permission, yay!
+&lt;/div></code></pre><h2>Contributions</h2><ul>
+<li>Andreas Stocker <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#111;&#58;&#97;&#110;&#100;&#114;&#x65;&#x61;&#115;&#x40;&#x73;&#116;&#x6f;&#x63;&#107;&#101;&#x72;&#46;&#x63;&#x6f;&#46;&#105;&#116;">&#97;&#110;&#100;&#114;&#x65;&#x61;&#115;&#x40;&#x73;&#116;&#x6f;&#x63;&#107;&#101;&#x72;&#46;&#x63;&#x6f;&#46;&#105;&#116;</a>, Main developer</li>
+</ul>
+<h2>License</h2><p>Angular Perms,
+Copyright 2016 Andreas Stocker,
+MIT License</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>        </article>      </section>    </div>    <footer style="clear:both">      Documentation generated by      <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a>      using       <a href="https://github.com/allenhwkim/angular-jsdoc">Angular-JSDoc template</a>     </footer>    <!--%= prettyJson %-->    <script>      prettyPrint();      var lineNo = window.location.hash.match(/#line([0-9]+)$/);      lineNo && document.querySelector("ol li:nth-child("+(lineNo[1])+")").scrollIntoView();    </script>  </body></html>
