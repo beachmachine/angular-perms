@@ -18,6 +18,17 @@ Angular Perms depends on AngularJS 1.x.
 * Via `npm`: `npm install --save angular-perms`
 * Via `git`: `git clone git@github.com:beachmachine/angular-perms.git`
 
+Include the library in your HTML
+* Minified version:
+```html
+    <script src="node_modules/angular-perms/dist/ngperms.min.js"></script>
+```
+
+* Non-minified version:
+```html
+    <script src="node_modules/angular-perms/dist/ngperms.js"></script>
+```
+
 Declare dependency on Angular Perms for your main application:
 ```javascript
 (function() {
