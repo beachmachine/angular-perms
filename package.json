@@ -17,8 +17,8 @@
   ],
   "author": "Andreas Stocker <andreas@stocker.co.it>",
   "license": "MIT",
-  "dependencies": {
-    "angular": "^1.6.0"
+  "peerDependencies": {
+    "angular": ">=1.5.0"
   },
   "devDependencies": {
     "angular-jsdoc": "^1.5.0",
